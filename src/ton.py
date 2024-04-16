@@ -39,7 +39,7 @@ async def start():
             continue
 
         # Iterating over transactions
-        for tx in resp['result']:
+        for tx in sorted(resp['result'], key=lambda k: int(k['transaction_id']['lt'])):
             # LT is Logical Time and Hash is hash of our transaction
             lt, hash = int(tx['transaction_id']['lt']), tx['transaction_id']['hash']
 
